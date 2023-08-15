@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+    </ion-buttons>
     <ion-title>lista</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,12 +10,55 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item>
-    <ion-label>Daenerys Targaryen</ion-label>
+      <!-- interpolação -->
+      <ion-label>{{nome}}</ion-label>
+      <ion-avatar slot="start">
+
+        <ion-img src="{{avatar}}" alt="The image Daenerys Targaryen"></ion-img>
+      </ion-avatar>
     </ion-item>
     <ion-item>
-    <ion-label>Jon Snow</ion-label>
+      <ion-label>{{nome}}</ion-label>
+      <ion-avatar slot="start">
+
+        <!-- bind de propriedades -->
+        <ion-img [src]="avatar" alt="The image Jon Snow"></ion-img>
+      </ion-avatar>
     </ion-item>
-    <ion-img  src="/assets/imgDaenerys.png" alt="The image Daenerys Targaryen"></ion-img>
-    <ion-img  src="/assets/imgJonSnow.png" alt="The image Jon Snow"></ion-img>
-    </ion-list>
+  </ion-list>
+
+  <ion-list *ngFor="let a of atores">
+    <ion-item>
+      <ion-label>{{a.nome}}</ion-label>
+      <ion-avatar slot="start">
+        <ion-img src="{{a.avatar}}"></ion-img>
+      </ion-avatar>
+      <ion-badge color="primary" slot="end">{{a.estrelas}}</ion-badge>
+    </ion-item>
+  </ion-list>
+
+  <!--  Inserindo Cards  -->
+  <ion-card>
+    <img alt="Foto da Rainha dos Dragões" src="{{avatar}}" />
+    <ion-card-header>
+      <ion-card-title>Daenerys Targaryen</ion-card-title>
+      <ion-card-subtitle>Senhora dos Sete Reinos</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Daenerys é uma jovem adolescente. É baixa e muito bonita, com cabelos
+      loiro-platinados e olhos violeta, comuns aos membros da Casa Targaryen.
+    </ion-card-content>
+  </ion-card>
+
+
+<!-- Podemos renderizar os cards com base nos dados da API -->
+  <ion-card *ngFor="let a of atores">
+    <ion-card-header color="primary">
+      <ion-card-title>{{a.nome}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-img src="{{a.avatar}}"></ion-img>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
